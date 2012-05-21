@@ -1,3 +1,16 @@
+# Neo4j Twitter Bootstrap
+
+This is a fork of the Twitter Bootstrap gem. It has a few small changes in order to work with the [Neo4j.rb](https://github.com/andreasronge/neo4j) ORM. 
+
+To use, just add gem 'twitter-bootstrap-rails', :git => "git://github.com/cfitz/neo4j-twitter-bootstrap-rails.git"
+
+
+In order to work with JRuby, this fork  uses [therubyrhino]( https://github.com/cowboyd/therubyrhino ) rather than  therubyracer.
+
+Below is the documentation for the original [twitter-bootstrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails)
+
+
+
 # Twitter Bootstrap for Rails 3.1 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 

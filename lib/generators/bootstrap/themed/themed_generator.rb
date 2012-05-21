@@ -54,10 +54,12 @@ module Bootstrap
 
       def columns
         begin
+          # currently, in Neo4j.rb, #columns returns an array of symbols. 
+          # {:callNumber=>{:type=>String, :index=>:exact, :converter=>Neo4j::TypeConverters::StringConverter}, :uri=>{:type=>String, :converter=>Neo4j::TypeConverters::StringConverter}, :disseminator=>{:type=>String, :index=>:exact, :converter=>Neo4j::TypeConverters::StringConverter}} 
           excluded_column_names = %w[id created_at updated_at]
-          @model_name.constantize.columns.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.name, c.type)}
+          @model_name.constantize.columns.reject{|c| excluded_column_names.include?(c.to_s) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.to_s, @model_name.constantize._decl_props[c][:type].to_s)}
         rescue NoMethodError
-          @model_name.constantize.fields.collect{|c| c[1]}.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.name, c.type.to_s)}
+          @model_name.constantize.fields.collect{|c| c[1]}.reject{|c| excluded_column_names.include?(c.to_s) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.to_s, @model_name.constantize._decl_props[c][:type].to_s )}
         end
       end
 
